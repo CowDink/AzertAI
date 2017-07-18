@@ -43,6 +43,7 @@ class DB{
     	if($where){
     		$query .= "WHERE {$where}";
     	}
+    echo $query."<br>";
     	$query = $db->query($query) or die($db->error);
     	$i = 0;
     	$fetch = "fetch_{$type}";
