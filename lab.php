@@ -15,7 +15,7 @@ $lab->ai()->method("wh");
 
 $lab->ai()->setChatId("999990");
 
-$lab->ai()->setMessage("kambing");
+$lab->ai()->setMessage("kamu itpa what");
 
 $lab->ai()->process();
 

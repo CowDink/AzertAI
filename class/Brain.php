@@ -15,18 +15,18 @@ class Brain{
 	protected $memoryFlow;
 	protected $text;
 	
-	
+	/**hostinger
 	protected $dbHost = "mysql.idhostinger.com";
 	protected $dbUname = "u135667435_azert";
 	protected $dbPass = "rahasia";
 	protected $dbDatabase = "u135667435_ai";
+	*/
 	
-	/**
 	protected $dbHost = "localhost";
 	protected $dbUname = "root";
 	protected $dbPass = "";
 	protected $dbDatabase = "azert";
-	*/
+	
 	
 	//meload brain agar bekerja
 	function load(){
@@ -75,9 +75,9 @@ class Brain{
 		//filter kata" kasar
 		if($this->filterBadWord($this->text)){
 			$match = $this->brainMatch();
-			if($match){
+			if($match["num"] > 2){
 				//print_r($this->chatBrainId);
-				$this->responseList = $this->db->get_data("response", "id_response", "id_chat='{$match}'");
+				$this->responseList = $this->db->get_data("response", "id_response", "id_chat='{$match['final']}'");
 				//mengubahnya menjadi array
 				$this->responseArray = explode(" ", $this->responseList[0]["id_response"]);
 				print_r($this->responseArray);
@@ -136,9 +136,13 @@ class Brain{
 		$result = array_count_values($this->tempData);
 		asort($result);
 		end($result);
-		$result = key($result);
-		echo $result;
-		return $result;
+		$lastResult = key($result);
+		$num = end($result);
+		$arResult = [
+			"final"=> $lastResult,
+			"num"=> $num
+		];
+		return $arResult;
 	}
 }
 ?>
